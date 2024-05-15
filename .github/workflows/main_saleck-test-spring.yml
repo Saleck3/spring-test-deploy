@@ -11,19 +11,21 @@ on:
 
 jobs:
   build:
+    
     runs-on: ubuntu-latest
     environment:
       name: 'Production'
+    env: 
+      MYSQL_URL: ${{ vars.MYSQL_URL }}
+      MYSQL_USER: ${{ vars.MYSQL_USER }}
+      MYSQL_PASS: ${{ secrets.MYSQL_PASS }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      REPO_VAR: ${{vars.REPO_VAR}}
 
     steps:
       - uses: actions/checkout@v4
-        env: 
-          MYSQL_URL: ${{ env.MYSQL_URL }}
-          MYSQL_USER: ${{ env.MYSQL_USER }}
-          MYSQL_PASS: ${{ secrets.MYSQL_PASS }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENVIRONMENT: ${{ env.ENVIRONMENT }}
-          REPO_VAR: ${{env.REPO_VAR}}
+        
 
       - name: Set up Java version
         uses: actions/setup-java@v4
