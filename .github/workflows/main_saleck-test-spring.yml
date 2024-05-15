@@ -16,11 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         env: 
-          MYSQL_URL: ${{ vars.MYSQL_URL }}
-          MYSQL_USER: ${{ vars.MYSQL_USER }}
+          MYSQL_URL: ${{ env.MYSQL_URL }}
+          MYSQL_USER: ${{ env.MYSQL_USER }}
           MYSQL_PASS: ${{ secrets.MYSQL_PASS }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+          ENVIRONMENT: ${{ env.ENVIRONMENT }}
 
       - name: Set up Java version
         uses: actions/setup-java@v4
@@ -32,6 +32,7 @@ jobs:
       - name: See env variables
         run: echo "${{env.MYSQL_URL}}"
           echo "${{env.MYSQL_USER}}"
+          echo "${{secrets.MYSQL_PASS}}"
 
       - name: Build with Maven
         run: mvn clean install
