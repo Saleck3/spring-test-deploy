@@ -33,10 +33,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: See env variables
-        run: |
-          echo "mysql url $MYSQL_URL"
-          echo "repo_var $REPO_VAR"
+      - name: Write value from Properties-file
+        id: write_property
+        uses: Reedyuk/write-properties@latest
+        with:
+          path: './src/main/resources/application-$ENVIRONMENT.properties'
+          property: 'spring.datasource.password'
+          value: '${{ secrets.MYSQL_PASS }}'
     
       - name: Build with Maven
         run: mvn clean install
