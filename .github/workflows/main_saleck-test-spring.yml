@@ -35,7 +35,7 @@ jobs:
 
       - name: Write value from Properties-file
         id: write_property
-        uses: Reedyuk/write-properties@latest
+        uses: Reedyuk/write-properties@v1.0.3
         with:
           path: './src/main/resources/application-$ENVIRONMENT.properties'
           property: 'spring.datasource.password'
