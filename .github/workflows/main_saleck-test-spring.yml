@@ -39,19 +39,19 @@ jobs:
           echo "repo_var $REPO_VAR"
       
       - name: Update env
-        run: sed -i 's/${ENVIRONMENT:local}/${{ env.ENVIRONMENT }}/' src/main/resources/application.properties
+        run: sed -i 's/local/${{ env.ENVIRONMENT }}/' src/main/resources/application.properties
 
       - name: Update db url
-        run: sed -i 's/${MYSQL_URL}/${{ env.MYSQL_URL }}/' src/main/resources/application-prod.properties
+        run: sed -i 's/MYSQL_URL/${{ env.MYSQL_URL }}/' src/main/resources/application-prod.properties
   
       - name: Update db username
-        run: sed -i 's/${MYSQL_USER}/${{ env.MYSQL_USER }}/' src/main/resources/application-prod.properties
+        run: sed -i 's/MYSQL_USER/${{ env.MYSQL_USER }}/' src/main/resources/application-prod.properties
   
       - name: Update db password
-        run: sed -i 's/${MYSQL_PASS}/${{ env.MYSQL_PASS }}/' src/main/resources/application-prod.properties
+        run: sed -i 's/MYSQL_PASS/${{ env.MYSQL_PASS }}/' src/main/resources/application-prod.properties
       
       - name: Update JWT pass
-        run: sed -i 's/${JWT_SECRET}/${{ env.JWT_SECRET }}/' src/main/resources/application-prod.properties
+        run: sed -i 's/JWT_SECRET/${{ env.JWT_SECRET }}/' src/main/resources/application-prod.properties
     
       - name: Build with Maven
         run: mvn clean install
